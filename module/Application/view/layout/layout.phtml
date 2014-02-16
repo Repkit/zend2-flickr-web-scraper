@@ -4,18 +4,18 @@
     	<?php echo $this->headTitle('ZF2 '. $this->translate('Flickr Scraper'))->setSeparator(' - ')->setAutoEscape(false) ?>
         <meta charset="utf-8">
          <?php echo $this->headMeta()
-            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
-            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+            					->appendName('viewport', 'width=device-width, initial-scale=1.0')
+								->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
         ?>
-        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap.no-icons.min.css" rel="stylesheet">
+        <link href="<?php echo $this->basepath()."/css/bootstrap.no-icons.min.css" ?>" rel="stylesheet">
         <link href="http://netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome.css" rel="stylesheet">
         
-        <script src="http://code.angularjs.org/1.1.0/angular.min.js"></script>
+        <script src="<?php echo $this->basepath()."/js/angular.min.js" ?>"></script>
         <script type="text/javascript">
 			var sortingOrder = 'name';
 		</script>
     </head>
-    <body>
+<body>
 
 <?php echo $this->content; ?>
 
@@ -41,9 +41,9 @@ $arr = array( array(
 ?>
 <script>
 
-var fruitsApp = angular.module('flickr-scraper', []);
- 
-fruitsApp.factory('fruitsFactory', function($http) {
+var flickrApp = angular.module('flickr-scraper', []);
+
+flickrApp.factory('flickrFactory', function($http) {
   return {
       getFruitsAsync: function(callback) {
     	  $http({
@@ -54,8 +54,8 @@ fruitsApp.factory('fruitsFactory', function($http) {
   };
 });
 
-fruitsApp.controller('ctrlRead', function($scope, $filter, fruitsFactory) {
-	fruitsFactory.getFruitsAsync(function(results) {
+flickrApp.controller('ctrlRead', function($scope, $filter, flickrFactory) {
+	flickrFactory.getFruitsAsync(function(results) {
 		
 		$scope.fruits = results.fruits;
 

@@ -1,4 +1,4 @@
-Zend2 Flick Scraper
+Zend2 Flickr Scraper
 =======================
 
 Introduction
@@ -22,6 +22,8 @@ Clone the repository and manually invoke `composer` using the shipped
 (The `self-update` directive is to ensure you have an up-to-date `composer.phar`
 available.)
 
+NOTE: the basic URL on my localhost is actually http://localhost/zf2-flickrscraper/public/
+I've not set a Virtual Host on my XAMPP. 
 
 HTACCESS
 ----------------
@@ -31,8 +33,7 @@ to use it on my Windows 7, so rename it or the URL rewriting will not work.
 
 FLICKR API Key
 ----------------
-I've stored the API Key on the main Application module. Change the key on the module.config.php file.
-
+I've stored the API Key on the main Application module. Replace the key on the module.config.php file.
 
 MySQL Database Setup
 ----------------
