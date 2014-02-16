@@ -23,11 +23,11 @@
 		<include name="**/*Test*.php"/>
 	</fileset>
 	</batchtest>
-	
+ -->
 	<logging>
 		<log type="coverage-html" target="./reports/" charset="UTF-8" />
 	</logging>
--->
+
 	<testsuites>
 		<testsuite name="TestSuite">
 			<directory suffix=".php">./</directory>

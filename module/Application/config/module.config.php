@@ -97,7 +97,8 @@ return array(
 	),
 	// Flickr
 	'flickr' => array(
-		"apiKey" => '37ff1d2635b002fa23a4ac7163c2b652'
+		"apiKey"		=> '37ff1d2635b002fa23a4ac7163c2b652',
+		"urlGetImages" 	=> ''
 	),
     // Placeholder for console routes
     'console' => array(

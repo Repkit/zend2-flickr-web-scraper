@@ -10,6 +10,7 @@ chdir(dirname(__DIR__));
 $loader = require_once  './vendor/autoload.php';
 $loader->add("ApplicationTest\\", $cwd);
 $loader->add("FlickrTest\\", $cwd);
+$loader->add("FlickrBackendTest\\", $cwd);
 $loader->register();
 
 ServiceManagerGrabber::setServiceConfig(require_once './config/application.config.php');

@@ -7,6 +7,7 @@ nbproject
 .project
 .settings
 composer.lock
+vendor/tests/reports/
 vendor/
 vendor/
 generateEntities.bat

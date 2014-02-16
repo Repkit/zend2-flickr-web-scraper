@@ -1,4 +1,4 @@
-AlbumRest
+Flickr Backend
 =========
 
-Sample rest implemention of album for Zend Framework 2
+Flickr Web-Scraper Backend module
