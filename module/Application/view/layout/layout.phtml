@@ -1,0 +1,162 @@
+<?php echo $this->doctype(); ?>
+<html xmlns:ng="http://angularjs.org" ng-app="flickr-scraper" lang="en">
+    <head>
+    	<?php echo $this->headTitle('ZF2 '. $this->translate('Flickr Scraper'))->setSeparator(' - ')->setAutoEscape(false) ?>
+        <meta charset="utf-8">
+         <?php echo $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap.no-icons.min.css" rel="stylesheet">
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome.css" rel="stylesheet">
+        
+        <script src="http://code.angularjs.org/1.1.0/angular.min.js"></script>
+        <script type="text/javascript">
+			var sortingOrder = 'name';
+		</script>
+    </head>
+    <body>
+
+<?php echo $this->content; ?>
+
+<?php
+$arr = array( array(
+		"id" => "1",
+        "name" => "name 1",
+        "description" => "description 1",
+        "field3" => "field3 1",
+        "field4" => "field4 1",
+        "field5 " => "field5 1"
+	),array(
+		"id" => "1",
+		"name" => "name 1",
+		"description" => "description 1",
+		"field3" => "field3 1",
+		"field4" => "field4 1",
+		"field5 " => "field5 1"
+) );
+
+// print_r(array_map("json_encode", $arr));
+
+?>
+<script>
+
+var fruitsApp = angular.module('flickr-scraper', []);
+ 
+fruitsApp.factory('fruitsFactory', function($http) {
+  return {
+      getFruitsAsync: function(callback) {
+    	  $http({
+  		    url: "/zf2-flickrscraper/public/flickr-backend",
+  		    method: "GET",
+  		}).success(callback);
+      }
+  };
+});
+
+fruitsApp.controller('ctrlRead', function($scope, $filter, fruitsFactory) {
+	fruitsFactory.getFruitsAsync(function(results) {
+		
+		$scope.fruits = results.fruits;
+
+		$scope.sortingOrder = sortingOrder;
+	    $scope.reverse = false;
+	    $scope.filteredItems = [];
+	    $scope.groupedItems = [];
+	    $scope.itemsPerPage = 5;
+	    $scope.pagedItems = [];
+	    $scope.currentPage = 0;
+	    $scope.items = results.data;
+	    
+	    var searchMatch = function (haystack, needle) {
+	        if (!needle) {
+	            return true;
+	        }
+	        return haystack.toLowerCase().indexOf(needle.toLowerCase()) !== -1;
+	    };
+	    
+	    // init the filtered items
+	    $scope.search = function () {
+	        $scope.filteredItems = $filter('filter')($scope.items, function (item) {
+	            for (var attr in item) {
+	                if (searchMatch(item[attr], $scope.query)) return true;
+	            }
+	            return false;
+	        });
+	        // take care of the sorting order
+	        if ($scope.sortingOrder !== '') {
+	            $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
+	        }
+	        $scope.currentPage = 0;
+	        // now group by pages
+	        $scope.groupToPages();
+	    };
+
+	    // calculate page in place
+	    $scope.groupToPages = function () {
+	        $scope.pagedItems = [];
+
+	        for (var i = 0; i < $scope.filteredItems.length; i++) {
+	            if (i % $scope.itemsPerPage === 0) {
+	                $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)] = [$scope.filteredItems[i]];
+	            } else {
+	                $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)].push($scope.filteredItems[i]);
+	            }
+	        }
+	    };
+
+	    $scope.range = function (start, end) {
+	        var ret = [];
+	        if (!end) {
+	            end = start;
+	            start = 0;
+	        }
+	        for (var i = start; i < end; i++) {
+	            ret.push(i);
+	        }
+	        return ret;
+	    };
+
+	    $scope.prevPage = function () {
+	        if ($scope.currentPage > 0) {
+	            $scope.currentPage--;
+	        }
+	    };
+
+	    $scope.nextPage = function () {
+	        if ($scope.currentPage < $scope.pagedItems.length - 1) {
+	            $scope.currentPage++;
+	        }
+	    };
+
+	    $scope.setPage = function () {
+	        $scope.currentPage = this.n;
+	    };
+
+	    // functions have been describe process the data for display
+	    $scope.search();
+
+	    // change sorting order
+	    $scope.sort_by = function (newSortingOrder) {
+	        if ($scope.sortingOrder == newSortingOrder) $scope.reverse = !$scope.reverse;
+
+	        $scope.sortingOrder = newSortingOrder;
+
+	        /*
+	        // icon setup
+	        $('th i').each(function () {
+	            // icon reset
+	            $(this).removeClass().addClass('icon-sort');
+	        });
+	        if ($scope.reverse) $('th.' + new_sorting_order + ' i').removeClass().addClass('icon-chevron-up');
+	        else $('th.' + new_sorting_order + ' i').removeClass().addClass('icon-chevron-down');
+	        */
+	    };
+	});
+});
+
+</script>
+
+	<?php echo $this->inlineScript() ?>
+    </body>
+</html>

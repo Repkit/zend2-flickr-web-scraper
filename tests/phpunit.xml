@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+         backupStaticAttributes="false"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         syntaxCheck="false"
+ 
+         bootstrap="Bootstrap.php">
+		 
+	<php>
+		<ini name="memory_limit" value="1024M" />
+	</php>
+
+<!-- Generate code coverage -->
+<!-- 
+	<formatter type="clover" usefile="false"/>
+	<batchtest>
+	<fileset dir="suite">
+		<include name="**/*Test*.php"/>
+	</fileset>
+	</batchtest>
+	
+	<logging>
+		<log type="coverage-html" target="./reports/" charset="UTF-8" />
+	</logging>
+-->
+	<testsuites>
+		<testsuite name="TestSuite">
+			<directory suffix=".php">./</directory>
+		</testsuite>
+	</testsuites>
+
+</phpunit>

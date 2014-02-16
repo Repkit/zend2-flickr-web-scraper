@@ -1,0 +1,25 @@
+{
+    "name": "Flickr-Scraper",
+    "description": "Flickr Scraper",
+    "keywords": [
+        "Flickr",
+        "scraper",
+        "RESTful"
+    ],
+    "homepage": "http://framework.zend.com/",
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": ">2.1.3",
+        "doctrine/doctrine-orm-module": "0.*"
+    },
+    "require-dev": {
+        "zendframework/zftool": "dev-master",
+        "zendframework/zend-developer-tools": "dev-master",
+		"zendframework/zendservice-flickr": "dev-develop",
+		
+		"zf-commons/zfc-user": "dev-master",
+
+        "bjyoungblood/BjyProfiler": "dev-master",
+		"bjyoungblood/bjy-authorize": "dev-master"
+    }
+}

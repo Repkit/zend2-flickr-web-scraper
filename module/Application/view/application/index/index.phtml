@@ -1,0 +1,54 @@
+
+<div class="container">
+
+	<h3>Flickr Web-Scraper</h3>
+
+		<div ng-controller="ctrlRead">
+            <div class="input-append">
+                <input type="text" ng-model="query" ng-change="search()" class="input-large search-query" placeholder="Search">
+            <span class="add-on"><i class="icon-search"></i></span>
+            </div>
+            <table class="table table-striped table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th class="imageurl">Image&nbsp;<a ng-click="sort_by('imageurl')"><i class="icon-sort"></i></a></th>
+                        <th class="title">Title&nbsp;<a ng-click="sort_by('title')"><i class="icon-sort"></i></a></th>
+                        <th class="width">Width&nbsp;<a ng-click="sort_by('width')"><i class="icon-sort"></i></a></th>
+                        <th class="height">Height&nbsp;<a ng-click="sort_by('height')"><i class="icon-sort"></i></a></th>
+                        <th class="owner">Owner&nbsp;<a ng-click="sort_by('height')"><i class="icon-sort"></i></a></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <td colspan="6">
+                        <div class="pagination pull-right">
+                            <ul>
+                                <li ng-class="{disabled: currentPage == 0}">
+                                    <a href ng-click="prevPage()">&laquo; Prev</a>
+                                </li>
+                                <li ng-repeat="n in range(pagedItems.length)"
+                                    ng-class="{active: n == currentPage}"
+                                ng-click="setPage()">
+                                    <a href ng-bind="n + 1">1</a>
+                                </li>
+                                <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                                    <a href ng-click="nextPage()">Next &raquo;</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tfoot>
+                <tbody>
+                    <tr ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
+                        <td><img ng-src="{{item.imageUrl}}" alt="{{item.title}}"></td>
+                        <td>{{item.title}}</td>
+                        <td>{{item.width}}</td>
+                        <td>{{item.height}}</td>
+                        <td>{{item.owner}}</td>
+                    </tr>
+                </tbody>
+            </table>
+		</div>
+	
+	<p>&copy; <?php echo date('Y') ?> Andrea Fiori</p>
+	
+</div>
