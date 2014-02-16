@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/andreafiori/Zend2-FlickrScraper.png?branch=master)](https://travis-ci.org/andreafiori/Zend2-FlickrScraper)
+
 Zend2 Flickr Scraper
 =======================
 

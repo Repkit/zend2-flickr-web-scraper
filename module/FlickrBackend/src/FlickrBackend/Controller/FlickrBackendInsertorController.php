@@ -38,7 +38,7 @@ class FlickrBackendInsertorController extends AbstractActionController
 			array("data" => $photos)
 		);
 	}
-	
+
 		private function setApiKey()
 		{
 			$config = $this->getServiceLocator()->get('config');
@@ -51,7 +51,7 @@ class FlickrBackendInsertorController extends AbstractActionController
 			
 			return $this->apiKey;
 		}
-		
+
 		private function getApiKey()
 		{
 			return $this->apiKey;
