@@ -25,7 +25,7 @@ Clone the repository and manually invoke `composer` using the shipped
 available.)
 
 NOTE: the basic URL on my localhost is actually http://localhost/zf2-flickrscraper/public/
-I've not set a Virtual Host on my XAMPP. 
+I've not set a Virtual Host on my XAMPP.
 
 HTACCESS
 ----------------
@@ -52,3 +52,8 @@ View images:
 
 Scrape the page and store images on db:
 	http://localhost/zf2-flickrscraper/public/flickr-scraper
+
+Screenshot
+----------------
+
+![Alt text](/img/screenshot.jpg)
