@@ -1,7 +1,7 @@
 <?php
 
 /* Compress HTML output */
-ob_start('compressHTMLOutput');
+// ob_start('compressHTMLOutput');
 
 /**
  * This makes our life easier when dealing with paths. Everything is relative
@@ -21,7 +21,7 @@ require 'init_autoloader.php';
 Zend\Mvc\Application::init(require 'config/application.config.php')->run();
 
 /* Compress HTML output (Flush) */
-ob_end_flush();
+// ob_end_flush();
 function compressHTMLOutput($buffer)
 {
 	$bufferout = $buffer;

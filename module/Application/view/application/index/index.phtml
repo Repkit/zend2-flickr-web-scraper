@@ -1,4 +1,3 @@
-
 <div class="container">
 
 	<h3>Flickr Web-Scraper</h3>
@@ -38,7 +37,7 @@
                     </td>
                 </tfoot>
                 <tbody>
-                    <tr ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
+                    <tr ng-repeat="item in pagedItems[currentPage] | filter:query | orderBy:sortingOrder:reverse">
                         <td><img ng-src="{{item.imageUrl}}" alt="{{item.title}}"></td>
                         <td>{{item.title}}</td>
                         <td>{{item.width}}</td>
@@ -58,14 +57,14 @@
 var flickrApp = angular.module('flickr-scraper', []);
 
 flickrApp.factory('flickrFactory', function($http) {
-  return {
-      getFruitsAsync: function(callback) {
-    	  $http({
-  		    url: '<?php echo $this->urlGetImages; ?>',
-  		    method: "GET",
-  		}).success(callback);
-      }
-  };
+	return {
+		getFruitsAsync: function(callback) {
+			$http({
+				url: '<?php echo $this->urlGetImages; ?>',
+				method: "GET",
+			}).success(callback);
+		}
+	};
 });
 
 flickrApp.controller('ctrlRead', function($scope, $filter, flickrFactory) {
@@ -86,6 +85,10 @@ flickrApp.controller('ctrlRead', function($scope, $filter, flickrFactory) {
 	        if (!needle) {
 	            return true;
 	        }
+	        
+	        haystack = haystack.toString();
+	        needle = needle.toString();
+	        
 	        return haystack.toLowerCase().indexOf(needle.toLowerCase()) !== -1;
 	    };
 	    
@@ -101,11 +104,11 @@ flickrApp.controller('ctrlRead', function($scope, $filter, flickrFactory) {
 	        if ($scope.sortingOrder !== '') {
 				$scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
 	        }
-	        $scope.currentPage = 0;
+			$scope.currentPage = 0;
 	        // now group by pages
-	        $scope.groupToPages();
+			$scope.groupToPages();
 	    };
-
+	    
 	    // calculate page in place
 	    $scope.groupToPages = function () {
 	        $scope.pagedItems = [];

@@ -4,7 +4,7 @@ return array(
         'Application',
     	'DoctrineModule',
     	'DoctrineORMModule',
-    	'ZendDeveloperTools',
+    	// 'ZendDeveloperTools',
     	'ZfcBase','ZfcUser','BjyProfiler',
     	'Backend'
     ),

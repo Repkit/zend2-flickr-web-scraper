@@ -40,6 +40,10 @@ FLICKR API Key
 ----------------
 I've stored the API Key on the main Application module. Replace the key on the module.config.php file.
 
+RESTful CALL on Frontend 
+----------------
+You can edit the link that gives the JSON response on module\Application\ 
+
 MySQL Database Setup
 ----------------
 

@@ -26,7 +26,7 @@ class FlickrBackendInsertorControllerTest extends TestSuite
 
 		$result   = $this->controller->dispatch($this->request);
 		$response = $this->controller->getResponse();
-	
+
 		$this->assertEquals(200, $response->getStatusCode());
 	}
 }
