@@ -9,7 +9,7 @@ use Backend\Controller\FlickrBackendInsertorController;
  * @author Andrea Fiori
  * @since  16 February 2014
  */
-class FlickrBackendInsertorControllerTest extends TestSuite
+class FlickrBackendInsertorControllerTest //extends TestSuite
 {
 	protected function setUp()
 	{

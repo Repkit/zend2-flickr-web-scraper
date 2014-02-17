@@ -23,7 +23,7 @@ class FlickrBackendController extends AbstractRestfulController
             'data' => $this->imagesQueryBuilder->getSelectResult(),
         ));
     }
-	
+
     public function get($id)
     {
     	$this->setImagesQueryBuilder();

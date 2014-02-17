@@ -21,7 +21,7 @@ class FlickrBackendInsertorController extends AbstractActionController
 	 * avoid to insert image with same URL
 	 */
 	public function indexAction()
-	{	
+	{
 		$flickrInstance = new Flickr( $this->recoverFlickrApiKey() );
 		$flickrScraper  = new FlickrScraper( $flickrInstance );
 		$flickrStore 	= new FlickrStore( $flickrScraper );

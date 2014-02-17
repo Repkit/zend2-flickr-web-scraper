@@ -9,7 +9,7 @@ use Backend\Controller\FlickrBackendController;
  * @author Andrea Fiori
  * @since  16 February 2014
  */
-class FlickrControllerTest extends TestSuite
+class FlickrControllerTest //extends TestSuite
 {
 	private $flickrController;
 	
@@ -22,13 +22,11 @@ class FlickrControllerTest extends TestSuite
 		$this->controller->setServiceLocator($this->serviceManager);
 	}
 	
-	public function testIndexActionCanBeAccessed()
-	{
-		// $this->routeMatch->setParam('action', 'index');
-		
+	public function testGetListCanBeAccessed()
+	{	
 		$result   = $this->controller->dispatch($this->request);
-		$response = $this->controller->getResponse();
-		
-		$this->assertEquals(200, $response->getStatusCode());
+        $response = $this->controller->getResponse();
+
+        $this->assertEquals(200, $response->getStatusCode());
 	}
 }

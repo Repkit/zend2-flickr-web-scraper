@@ -2,16 +2,31 @@
 
 namespace Application;
 
-use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
 class Module
 {
     public function onBootstrap(MvcEvent $e)
     {
-        $eventManager        = $e->getApplication()->getEventManager();
-        $moduleRouteListener = new ModuleRouteListener();
-        $moduleRouteListener->attach($eventManager);
+    	$application   = $e->getApplication();
+		$sm            = $application->getServiceManager();
+
+        try {
+            $dbInstance = $application->getServiceManager()
+                                      ->get('Zend\Db\Adapter\Adapter');
+            $dbInstance->getDriver()->getConnection()->connect();
+        } catch (\Exception $ex) {
+            $ViewModel = $e->getViewModel();
+            $ViewModel->setTemplate('layout/layout');
+                 
+            $content = new \Zend\View\Model\ViewModel();
+            $content->setTemplate('error/dbofflineerror');
+            
+            $ViewModel->setVariable('content', $sm->get('ViewRenderer')
+                                                  ->render($content));
+            
+            exit($sm->get('ViewRenderer')->render($ViewModel));
+        }
     }
 
     public function getConfig()
