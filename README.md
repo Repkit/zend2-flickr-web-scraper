@@ -7,9 +7,9 @@ Introduction
 ------------
 
 Zend framework 2 application to scrape a Flickr page and store images properties on a database.
-I use Doctrine 2 ORM to handle data from the DB.
-The Frontend Application get the result of a RESTful GET call made with AngularJS using $http. 
-The call will return a JSON response and the result populates the HTML table.
+I've used Doctrine 2 ORM to map entities and handle data from a MySQL database.
+The Frontend get the result of a GET call made with AngularJS using $http. 
+The call will return a JSON response and if there will be a result, the HTML table will be populated.
 
 Installation Using Composer
 ----------------------------
@@ -38,11 +38,13 @@ to use it on my Windows 7, so rename it or the URL rewriting will not work.
 
 FLICKR API Key
 ----------------
+
 I've stored the API Key on the main Application module. Replace the key on the module.config.php file.
 
 RESTful CALL on Frontend 
 ----------------
-You can edit the link that gives the JSON response on module\Application\ 
+
+You can edit the link that gives the JSON response on module\Application\module.config.php
 
 MySQL Database Setup
 ----------------

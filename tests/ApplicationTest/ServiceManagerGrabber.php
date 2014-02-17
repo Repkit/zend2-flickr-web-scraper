@@ -5,8 +5,8 @@ namespace ApplicationTest;
 use Zend\ServiceManager\ServiceManager;
 use Zend\Mvc\Service\ServiceManagerConfig;
 
-class ServiceManagerGrabber {
-
+class ServiceManagerGrabber
+{
 	protected static $serviceConfig = null;
      
     public static function setServiceConfig($config)
@@ -28,8 +28,7 @@ class ServiceManagerGrabber {
         $serviceManager->setService('ApplicationConfig', $configuration);
 
         $serviceManager->get('ModuleManager')->loadModules();
-         
+
         return $serviceManager;
     }
-    
 }
