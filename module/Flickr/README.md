@@ -1,1 +1,0 @@
-Flickr Module to set image properties for the Backend and get db Entities

@@ -98,7 +98,7 @@ return array(
 	// Flickr
 	'flickr' => array(
 		"apiKey"		=> '37ff1d2635b002fa23a4ac7163c2b652',
-		"urlGetImages" 	=> ''
+		"urlGetImages" 	=> '/zf2-flickrscraper/public/flickr-backend'
 	),
     // Placeholder for console routes
     'console' => array(

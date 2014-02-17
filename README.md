@@ -5,8 +5,11 @@ Zend2 Flickr Scraper
 
 Introduction
 ------------
-Zend framework 2 application to scrape a Flickr page and store the main images properties on a database.
+
+Zend framework 2 application to scrape a Flickr page and store images properties on a database.
 I use Doctrine 2 ORM to handle data from the DB.
+The Frontend Application get the result of a RESTful GET call made with AngularJS using $http. 
+The call will return a JSON response and the result populates the HTML table.
 
 Installation Using Composer
 ----------------------------
@@ -55,5 +58,7 @@ Scrape the page and store images on db:
 
 Screenshot
 ----------------
+
+Frontend screenshot:
 
 ![Alt text](/img/screenshot.jpg)

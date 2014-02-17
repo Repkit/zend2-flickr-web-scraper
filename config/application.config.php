@@ -6,7 +6,7 @@ return array(
     	'DoctrineORMModule',
     	'ZendDeveloperTools',
     	'ZfcBase','ZfcUser','BjyProfiler',
-    	'Flickr','FlickrBackend'
+    	'Backend'
     ),
     'module_listener_options' => array(
         'module_paths' => array(
