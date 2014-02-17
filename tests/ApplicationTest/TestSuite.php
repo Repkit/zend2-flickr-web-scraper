@@ -20,6 +20,7 @@ class TestSuite extends \PHPUnit_Framework_TestCase
 	protected $routeMatch;
 	protected $event;
 	protected $serviceManager;
+	protected $controller;
 	
 	protected $entityManagerMock, $doctrine;
 	
