@@ -2,7 +2,6 @@
 
 namespace Backend\Model;
 
-use Zend\Filter\HtmlEntities;
 /**
  * @author Andrea Fiori
  * @since  14 February 2014
@@ -16,16 +15,18 @@ class ImagesEntitySetter
 		$this->imageEntity = $images;
 	}
 	
-	public function setImageEntityProperties($photo)
+	/**
+	 * @param \ZendService\Flickr\Result $photo
+	 * @return \Application\Entity\Images
+	 */
+	public function setImageEntityProperties(\ZendService\Flickr\Result $photo)
 	{
-		if ( is_object($photo) ) {
-			$this->imageEntity->setWidth($photo->Thumbnail->width);
-			$this->imageEntity->setHeight($photo->Thumbnail->height);
-			$this->imageEntity->setImageUrl($photo->Thumbnail->uri);
-			$this->imageEntity->setTitle( htmlentities( strip_tags($photo->title) ) );
-			$this->imageEntity->setOwner($photo->owner);
-		}
-		
+		$this->imageEntity->setWidth($photo->Thumbnail->width);
+		$this->imageEntity->setHeight($photo->Thumbnail->height);
+		$this->imageEntity->setImageUrl($photo->Thumbnail->uri);
+		$this->imageEntity->setTitle( htmlentities( strip_tags($photo->title) ) );
+		$this->imageEntity->setOwner($photo->owner);
+
 		return $this->imageEntity;
 	}
 	

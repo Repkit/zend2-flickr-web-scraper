@@ -12,7 +12,7 @@ use Backend\Model\ImagesEntitySetter;
 class ImagesEntitySetterTest extends TestSuite
 {
 	private $imagesEntitySetter;
-	
+
 	public function setUp()
 	{
 		parent::setUp();
@@ -20,14 +20,24 @@ class ImagesEntitySetterTest extends TestSuite
 		$this->imagesEntitySetter = new ImagesEntitySetter( new \Application\Entity\Images() );
 	}
 
-	/**
-	 * TODO: test set Flickr Object photo on to setImageEntityProperties()
-	 */
 	public function testSetImageEntityProperties()
-	{
-		$this->assertNotEmpty( $this->imagesEntitySetter->setImageEntityProperties(array("here is fake :( ")) );
-		
-		// $this->imagesEntitySetter->setImageEntityProperties();
-		// $this->assertNotEmpty( $this->imagesEntitySetter->getImageEntity() );
+	{		
+		$this->assertInstanceOf('\Application\Entity\Images', $this->imagesEntitySetter->setImageEntityProperties($this->getFlickrResultSetMock()) );
 	}
+	
+		/**
+		 * @return \ZendService\Flickr\Result $flickrResultSetMock
+		 */
+		private function getFlickrResultSetMock()
+		{
+			$flickrResultSetMock = $this->getMockBuilder('\ZendService\Flickr\Result')
+							   					->disableOriginalConstructor()
+							   					->getMock();
+			
+			$flickrResultSetMock->Thumbnail = $this->getMockBuilder('\ZendService\Flickr\Image')
+							   					->disableOriginalConstructor()
+							   					->getMock();
+					
+			return $flickrResultSetMock;
+		}
 }

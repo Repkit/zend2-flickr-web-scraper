@@ -6,7 +6,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
 use ZendService\Flickr\Flickr;
 use Backend\Model\FlickrScraper;
-use Backend\Model\FlickrStore;
+use Backend\Model\ImagesEntitySetter;
 
 /**
  * @author Andrea Fiori
@@ -24,11 +24,12 @@ class FlickrBackendInsertorController extends AbstractActionController
 	{
 		$flickrInstance = new Flickr( $this->recoverFlickrApiKey() );
 		$flickrScraper  = new FlickrScraper( $flickrInstance );
-		$flickrStore 	= new FlickrStore( $flickrScraper );
-		
+		$imageEntitySetter = new ImagesEntitySetter( new \Application\Entity\Images() );
+				
 		$photos = $flickrScraper->setTagSearch('education');
 		foreach ($photos as $photo) {
-			$imagesEntity = $flickrStore->setImageEntityProperties($photo);
+			
+			$imagesEntity = $imageEntitySetter->setImageEntityProperties($photo);
 			
 			$this->objectManager = $this->getServiceLocator()->get('\Doctrine\ORM\EntityManager');
 
@@ -42,6 +43,7 @@ class FlickrBackendInsertorController extends AbstractActionController
 			} else {
 				$this->persistImage( $imagesEntity );
 			}
+
 		}
 		
 		return new JsonModel(

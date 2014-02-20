@@ -17,6 +17,7 @@ class FlickrBackendController extends AbstractRestfulController
     public function getList()
     {
     	$this->setImagesQueryBuilder();
+    	
     	$this->imagesQueryBuilder->setOrderBy("i.id DESC");
 
 		return new JsonModel(array(
@@ -27,6 +28,7 @@ class FlickrBackendController extends AbstractRestfulController
     public function get($id)
     {
     	$this->setImagesQueryBuilder();
+    	
     	$this->imagesQueryBuilder->setId($id);
     	$this->imagesQueryBuilder->setLimit(1);
 
