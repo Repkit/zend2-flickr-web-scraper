@@ -2,7 +2,6 @@
 
 namespace BackendTest\Model;
 
-use ServiceLocatorFactory\ServiceLocatorFactory;
 use ApplicationTest\TestSuite;
 use Backend\Model\ImagesQueryBuilder;
 

@@ -4,6 +4,7 @@ namespace Setup;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManager;
+use Application\Model\EntitySerializer;
 
 /**
  * TODO: merge this object with DQLQueryHelper to inject a mock on every object to make query
