@@ -6,9 +6,7 @@ nbproject
 .idea
 .project
 .settings
-composer.lock
+vendor/
 tests/reports/
-vendor/
-vendor/
 generateEntities.bat
 generateEntititesSetterGetter.bat

@@ -66,6 +66,5 @@ class ImagesQueryBuilder extends DQLQueryHelper
 			$this->query .= "AND i.owner = :owner ";
 			$this->addToBindParameters('owner', $owner);
 		}
-	}
-	
+	}	
 }
